@@ -5,23 +5,36 @@ const client = new OpenAI({
 });
 
 export async function handler(event) {
-  const body = JSON.parse(event.body);
-  const question = body.question;
-
   try {
+    // Parse the incoming request
+    const { question } = JSON.parse(event.body || "{}");
+
+    if (!question) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: "No question provided." }),
+      };
+    }
+
+    // Send request to OpenAI
     const completion = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [{ role: "user", content: question }],
     });
 
+    // Return the AI response
     return {
       statusCode: 200,
-      body: JSON.stringify({ answer: completion.choices[0].message.content }),
+      body: JSON.stringify({
+        answer: completion.choices[0].message.content,
+      }),
     };
   } catch (error) {
+    console.error("Error in function:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      body: JSON.stringify({ error: error.message || "Server error" }),
     };
   }
 }
+
