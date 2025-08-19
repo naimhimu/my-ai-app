@@ -33,7 +33,7 @@
   </style>
 </head>
 <body>
-  <h1>Talk with AI 🤖</h1>
+  <h1>IELTS with Nayeem</h1>
   <textarea id="userInput" placeholder="Type your question..."></textarea>
   <button onclick="askAI()">Ask</button>
   <pre id="response"></pre>
@@ -43,8 +43,7 @@
       const question = document.getElementById("userInput").value;
       document.getElementById("response").textContent = "Thinking...";
 
-      const res = await fetch("/.netlify/functions/openai", {
-        method: "POST",
+      const res = await fetch("/.netlify/functions/openai", { ... }),
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ question })
       });
