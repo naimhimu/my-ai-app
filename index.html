@@ -43,10 +43,11 @@
       const question = document.getElementById("userInput").value;
       document.getElementById("response").textContent = "Thinking...";
 
-      const res = await fetch("/.netlify/functions/openai", { ... }),
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question })
-      });
+      const res = await fetch("/.netlify/functions/openai", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ question })
+});
 
       const data = await res.json();
       document.getElementById("response").textContent = data.answer || "Error: " + data.error;
