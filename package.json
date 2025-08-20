@@ -1,0 +1,12 @@
+{
+  "name": "ielts-ai-netlify",
+  "version": "1.0.0",
+  "description": "IELTS AI web app",
+  "main": "index.js",
+  "dependencies": {
+    "openai": "^4.7.0"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "MIT"
+}
