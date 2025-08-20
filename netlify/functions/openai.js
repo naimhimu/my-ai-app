@@ -14,7 +14,10 @@ exports.handler = async function (event) {
       messages: [{ role: "user", content: question }],
     });
 
-    return { statusCode: 200, body: JSON.stringify({ answer: completion.choices[0].message.content }) };
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ answer: completion.choices[0].message.content }),
+    };
   } catch (error) {
     console.error(error);
     return { statusCode: 500, body: JSON.stringify({ error: error.message || "Server error" }) };
